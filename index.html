@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hebrew Keyboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      padding: 20px;
+      text-align: center;
+    }
+    textarea {
+      width: 90%;
+      height: 100px;
+      font-size: 20px;
+      direction: rtl;
+    }
+    .keyboard {
+      margin-top: 20px;
+    }
+    .key {
+      padding: 10px 15px;
+      margin: 3px;
+      font-size: 20px;
+      cursor: pointer;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f4f4f4;
+    }
+    button.copy {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 8px 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Hebrew Keyboard</h2>
+  <textarea id="output" placeholder="Type here..."></textarea>
+  <div class="keyboard" id="keyboard"></div>
+  <button class="copy" onclick="copyText()">Copy</button>
+
+  <script>
+    const hebrewLetters = ['א','ב','ג','ד','ה','ו','ז','ח','ט','י','כ','ל','מ','נ','ס','ע','פ','צ','ק','ר','ש','ת','ף','ך','ץ','ם','ן','׳','״','־',' ', '\'','"'];
+
+    const keyboard = document.getElementById('keyboard');
+    const output = document.getElementById('output');
+
+    hebrewLetters.forEach(letter => {
+      const key = document.createElement('span');
+      key.className = 'key';
+      key.textContent = letter;
+      key.onclick = () => {
+        output.value += letter;
+        output.focus();
+      };
+      keyboard.appendChild(key);
+    });
+
+    function copyText() {
+      output.select();
+      document.execCommand('copy');
+      alert('Copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
